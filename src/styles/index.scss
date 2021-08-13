@@ -1,0 +1,18 @@
+.btn-general {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+}
+
+.active-link::before {
+  content: "";
+  color: white;
+  position: absolute;
+  left: 0;
+  height: 30px;
+  width: 5px;
+  background-color: rgb(63, 236, 63);
+}
+

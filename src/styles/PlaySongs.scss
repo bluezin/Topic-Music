@@ -1,0 +1,72 @@
+.PlaySongs {
+  // width: 50%;
+  margin: 30px auto;
+  position: relative;
+}
+
+.PlaySongs__item {
+  display: flex;
+  box-shadow: 0 0 12px rgb(230, 223, 223);
+  gap: 10px;
+  margin-bottom: 30px;
+  align-items: center;
+  padding-left: 10px;
+  cursor: pointer;
+  color: white;
+}
+
+.PlaySongs__item--footer {
+  border: 2px solid red;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  width: 100%;
+  left: 0;
+  right: 0;
+  align-items: center;
+  gap: 30px;
+  background-color: white;
+  color: black;
+
+  img {
+    width: 100px;
+  }
+
+  &--info {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  figure {
+    img {
+      width: 40px;
+    }
+  }
+
+  &--controlls {
+    padding: 3px;
+    color: black;
+    width: 40%;
+    border: 2px solid red;
+    border-radius: 10px;
+
+    & div {
+      background-color: blue;
+      padding: 3px;
+      inline-size: 0%;
+    }
+  }
+
+  &--volumn {
+    padding: 3px;
+    width: 100px;
+    border: 2px solid blue;
+    border-radius: 10px;
+
+    & div {
+      background-color: brown;
+      padding: 3px;
+    }
+  }
+}

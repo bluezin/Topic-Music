@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
+header {
+  background-color: hsl(245, 75%, 52%);
+  padding: 5px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+
+  img {
+    width: 35%;
+  }
+
+  nav {
+    display: flex;
+    gap: 30px;
+    a {
+      text-decoration: none;
+      font-weight: bold;
+      color: white;
+    }
+  }
+}
+
+.Nav__title {
+  color: white;
+  letter-spacing: 2px;
+  font-size: 20px;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: 'Righteous', cursive;
+}
