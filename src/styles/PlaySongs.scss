@@ -13,13 +13,14 @@
     align-items: center;
     grid-template-columns: repeat(2, auto);
     margin: 20px auto;
-    width: 80%;
+    // width: 80%;
+    width: 800px;
     justify-content: space-between;
     padding-right: 20px;
-    transition: background-color 3s;
+    transition: background-color 2s;
 
     &:hover {
-      background-color: hsl(245, 90%, 81%);
+      background-color: hsl(245, 84%, 75%);
     }
 
     div {
@@ -39,18 +40,20 @@
 }
 
 .PlaySongs__item--footer {
-  position: fixed;
-  bottom: 0;
   display: flex;
+  align-items: center;
+  position: fixed;
+  justify-content: space-around;
+  bottom: 0;
   width: 100%;
   left: 0;
   right: 0;
-  align-items: center;
   gap: 30px;
   background-color: white;
   color: black;
+  border: 2px solid red;
 
-  img {
+  .img-album {
     width: 100px;
   }
 
@@ -60,35 +63,51 @@
     gap: 10px;
   }
 
-  figure {
-    img {
-      width: 40px;
+  &--play {
+    figure {
+      img {
+        width: 40px;
+      }
     }
   }
 
   &--controlls {
-    padding: 3px;
     color: black;
-    width: 40%;
-    border: 2px solid red;
-    border-radius: 10px;
+    width: 400px;
+    text-align: center;
+    background-color: rgb(230, 223, 223);
+    display: block;
+    border-radius: 20px;
+
+    & button {
+      text-align: center;
+    }
 
     & div {
-      background-color: blue;
+      background-color: white;
       padding: 3px;
       inline-size: 0%;
     }
   }
 
   &--volumn {
-    padding: 3px;
-    width: 100px;
-    border: 2px solid blue;
     border-radius: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 70px);
+    align-items: center;
+    width: 20%;
 
     & div {
-      background-color: brown;
       padding: 3px;
+      inline-size: 0;
+      background-color: white;
+      border: 2px solid blue;
+
+      figure {
+        img {
+          width: 50px;
+        }
+      }
     }
   }
 }

@@ -56,32 +56,28 @@ const Songs = ({ item, chooseSong, setChooseSong, favorite, setFavorite }) => {
   };
 
   useEffect(() => {
-    if (chooseSong?.play === true && chooseSong?.song?.id === item.id) {
-      audioRef?.current?.play();
-      setIsPlay(true);
-    } else if (chooseSong?.song?.id !== item.id || chooseSong?.play === false) {
-      audioRef?.current?.pause();
-      setIsPlay(false);
-    }
+    // if (chooseSong?.play === true && chooseSong?.song?.id === item.id) {
+    //   audioRef?.current?.play();
+    //   setIsPlay(true);
+    // } else if (chooseSong?.song?.id !== item.id || chooseSong?.play === false) {
+    //   audioRef?.current?.pause();
+    //   setIsPlay(false);
+    // }
   }, [chooseSong]);
 
   useEffect(() => {
-    setInterval(() => {
-      const mutable = audioRef?.current?.currentTime;
-      const progress = (mutable * 100) / audioRef?.current?.duration;
-      setTimeProgress(progress);
-    }, 1000);
+    // setInterval(() => {
+    //   const mutable = audioRef?.current?.currentTime;
+    //   const progress = (mutable * 100) / audioRef?.current?.duration;
+    //   setTimeProgress(progress);
+    // }, 1000);
   }, []);
 
   return (
     <section className="PlaySongs__item">
       <div className="PlaySongs__item--sub">
-        <div>
-          <button
-            type="button"
-            onClick={() => handlePlayMusic(item)}
-            className="btn-general"
-          >
+        <div onClick={() => handlePlayMusic(item)}>
+          <button type="button" className="btn-general">
             <img
               alt="play"
               src={
@@ -119,6 +115,7 @@ const Songs = ({ item, chooseSong, setChooseSong, favorite, setFavorite }) => {
             <img
               alt=""
               src={`http://direct.rhapsody.com/imageserver/v2/albums/${chooseSong?.song?.albumId}/images/300x300.jpg`}
+              className="img-album"
             />
             <div>
               <strong>{chooseSong?.song?.name}</strong>
@@ -126,33 +123,44 @@ const Songs = ({ item, chooseSong, setChooseSong, favorite, setFavorite }) => {
             </div>
           </div>
 
-          <button className="btn-general" onClick={() => handlePlayMusic(item)}>
-            <figure>
-              <img
-                alt="play"
-                src={
-                  isPlay
-                    ? "https://icongr.am/feather/pause-circle.svg?size=128&color=currentColor"
-                    : "https://icongr.am/octicons/play.svg?size=28&color=currentColor"
-                }
-              />
-            </figure>
-          </button>
-          <div
-            className="PlaySongs__item--footer--controlls"
-            ref={timeRef}
-            onClick={handleProgressAument}
-          >
+          <div className="PlaySongs__item--footer--play">
+            <button
+              className="btn-general"
+              onClick={() => handlePlayMusic(item)}
+            >
+              <figure>
+                <img
+                  alt="play"
+                  src={
+                    isPlay
+                      ? "https://icongr.am/feather/pause-circle.svg?size=128&color=currentColor"
+                      : "https://icongr.am/octicons/play.svg?size=28&color=currentColor"
+                  }
+                />
+              </figure>
+            </button>
             <div
-              ref={timeSecondRef}
-              style={{ inlineSize: `${timeProgress}%` }}
-            ></div>
+              className="PlaySongs__item--footer--controlls"
+              ref={timeRef}
+              onClick={handleProgressAument}
+            >
+              <div
+                ref={timeSecondRef}
+                style={{ inlineSize: `${timeProgress}%` }}
+              ></div>
+            </div>
           </div>
           <div
             className="PlaySongs__item--footer--volumn"
             ref={volumnRef}
             onClick={handleProgressVolumn}
           >
+            <figure>
+              <img
+                alt="volumn"
+                src="https://icongr.am/fontawesome/volume-up.svg?size=20&color=currentColor"
+              />
+            </figure>
             <div style={{ inlineSize: `${volumnProgress}%` }}></div>
           </div>
         </footer>

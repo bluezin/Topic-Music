@@ -10,7 +10,7 @@ const PlaySongs = () => {
   const [listSongs, setListSongs] = useState();
   const [favorite, setFavorite] = useState([]);
   const [chooseSong, setChooseSong] = useState({ song: "", play: false });
-  
+
   const params = useParams();
 
   useEffect(() => {
