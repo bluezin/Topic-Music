@@ -2,15 +2,18 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Loading from "./loadPage";
 import "../styles/containers/PlayList.scss";
+import { useSelector } from "react-redux";
 
 const PlayList = ({ playList }) => {
+  const state = useSelector((state) => state);
+
   return (
     <>
       {!playList?.playlists && <Loading />}
       {playList?.playlists && (
         <div className="PlayList">
           <p className="PlayList__title">
-            <strong>Welcome Yadira</strong>
+            <strong>{`Welcome ${state?.user}!!!`}</strong>
           </p>
           <div className="PlayList__list">
             {playList?.playlists.map((item) => (

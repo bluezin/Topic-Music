@@ -8,6 +8,7 @@ import "../styles/PlaySongs.scss";
 
 const PlaySongs = () => {
   const [listSongs, setListSongs] = useState();
+  const [favorite, setFavorite] = useState([]);
   const [chooseSong, setChooseSong] = useState({ song: "", play: false });
   
   const params = useParams();
@@ -34,6 +35,8 @@ const PlaySongs = () => {
             item={item}
             chooseSong={chooseSong}
             setChooseSong={setChooseSong}
+            favorite={favorite}
+            setFavorite={setFavorite}
           />
         ))}
       </div>

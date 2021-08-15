@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
 
 header {
   background-color: hsl(245, 75%, 52%);
@@ -31,5 +31,58 @@ header {
   font-size: 20px;
   text-decoration: none;
   font-weight: bold;
-  font-family: 'Righteous', cursive;
+  font-family: "Righteous", cursive;
+}
+
+.Modal {
+  background-color: rgb(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+
+  &__body {
+    background-color: white;
+    box-shadow: 0 0 10px rgb(206, 195, 195);
+    border-radius: 10px;
+    width: 300px;
+    margin: auto;
+    height: 200px;
+    text-align: center;
+    font-size: 24px;
+
+    & div {
+      display: flex;
+      margin: 10px;
+      gap: 10px;
+    }
+
+    & p {
+      margin-top: 50px;
+    }
+
+    & .button-cancel {
+      background-color: transparent;
+      padding: 15px;
+      width: 90%;
+      font-size: 15px;
+      font-weight: bold;
+      border-radius: 10px;
+      color: black;
+      box-shadow: 0 0 10px rgb(182, 177, 177);
+    }
+
+    & .button-sing {
+      background-color: red;
+      padding: 15px;
+      width: 90%;
+      font-size: 15px;
+      font-weight: bold;
+      border-radius: 10px;
+    }
+  }
 }

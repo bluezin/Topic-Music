@@ -1,5 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Boogaloo&family=Rock+Salt&display=swap");
+
 .PlayList {
-  width: 70%;
+  width: 90%;
   margin: auto;
 
   &__title {
@@ -7,13 +9,14 @@
     color: #3829e0;
     text-align: center;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 4px;
+    font-family: "Boogaloo", cursive;
   }
 
   &__list {
     display: grid;
     grid-template-columns: repeat(4, auto);
-    justify-content: center;  
+    justify-content: center;
 
     figure {
       position: relative;
@@ -65,5 +68,23 @@
       opacity: 1;
       transform: translateY(0);
     }
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .PlayList__list {
+    grid-template-columns: repeat(3, auto);
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .PlayList__list {
+    grid-template-columns: repeat(2, auto);
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .PlayList__list {
+    grid-template-columns: repeat(1, auto);
   }
 }

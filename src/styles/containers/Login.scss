@@ -1,0 +1,82 @@
+.Login {
+  width: 100%;
+  background-image: url("/images/pattern-background-desktop.svg/");
+  // height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  &__sub {
+    position: relative;
+    top: 120px;
+
+    &--button {
+      text-align: center;
+      padding-bottom: 40px;
+    }
+
+    &--inputs {
+      width: 80%;
+      margin: auto;
+
+      &--error {
+        color: red;
+      }
+    }
+  }
+
+  & form {
+    margin: auto;
+    width: 430px;
+    border-radius: 15px;
+    font-family: "Atkinson Hyperlegible", sans-serif;
+    box-shadow: 0 0 18px rgb(224, 217, 217);
+    background-color: white;
+
+    & img {
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      width: 100%;
+    }
+
+    & h1 {
+      text-align: center;
+    }
+
+    & label {
+      font-size: 18px;
+    }
+
+    & input {
+      width: 90%;
+      padding: 15px;
+      border-radius: 10px;
+      border: 2px solid black;
+      margin: 10px auto;
+      outline: none;
+      font-size: 18px;
+    }
+
+    & button {
+      background-color: hsl(245, 75%, 52%);
+      color: white;
+      width: 80%;
+      padding: 13px;
+      border-radius: 10px;
+      font-size: 20px;
+      font-weight: bold;
+
+      &:hover {
+        transition: background-color 2s;
+        background-color: hsl(245, 86%, 66%);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 470px) {
+  .Login {
+    & form {
+      width: 300px;
+    }
+  }
+}

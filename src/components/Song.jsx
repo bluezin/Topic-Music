@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
-const Songs = ({ item, chooseSong, setChooseSong }) => {
+const Songs = ({ item, chooseSong, setChooseSong, favorite, setFavorite }) => {
   const [isPlay, setIsPlay] = useState(false);
   const [timeProgress, setTimeProgress] = useState("");
   const [volumnProgress, setVolumnProgress] = useState(0);
@@ -40,7 +40,19 @@ const Songs = ({ item, chooseSong, setChooseSong }) => {
       (currentVolumn * 100) / currentWidth
     );
     audioRef.current.volume = porcentageClickSlider / 100;
-    setVolumnProgress(String(currentVolumn)); 
+    setVolumnProgress(String(currentVolumn));
+  };
+
+  const handleSongFavorite = (name) => {
+    // return favorite?.map((data) => {
+    //   return data === name.name ? console.log("si") : console.log("nooo");
+    // });
+    // favorite.map((data) => {
+    //   return !data || data !== name
+    //     ? setFavorite([...favorite, name.name])
+    //     : null;
+    // });
+    // console.log(favorite);
   };
 
   useEffect(() => {
@@ -63,19 +75,40 @@ const Songs = ({ item, chooseSong, setChooseSong }) => {
 
   return (
     <section className="PlaySongs__item">
-      <button type="button" onClick={() => handlePlayMusic(item)}>
-        <img
-          alt="play"
-          src={
-            isPlay
-              ? "https://icongr.am/feather/pause-circle.svg?size=25&color=currentColor"
-              : "https://icongr.am/feather/play.svg?size=25&color=currentColor"
-          }
-        />
-      </button>
-      <p>{item.artistName}</p>
-      <p>...</p>
-      <p>{item.name}</p>
+      <div className="PlaySongs__item--sub">
+        <div>
+          <button
+            type="button"
+            onClick={() => handlePlayMusic(item)}
+            className="btn-general"
+          >
+            <img
+              alt="play"
+              src={
+                isPlay
+                  ? "https://icongr.am/feather/pause-circle.svg?size=22&color=currentColor"
+                  : "https://icongr.am/feather/play.svg?size=22&color=currentColor"
+              }
+            />
+          </button>
+          <p>{item.artistName}</p>
+          <p>...</p>
+          <p>{item.name}</p>
+        </div>
+        <div>
+          <button
+            className="btn-general button-heart"
+            onClick={() => handleSongFavorite(item)}
+          >
+            <img
+              alt="heart"
+              src={`https://icongr.am/feather/heart.svg?size=20&color=${
+                favorite.includes(item.name) ? "ee2b2b" : "currentColor"
+              }`}
+            />
+          </button>
+        </div>
+      </div>
       {/*  */}
       {chooseSong?.song?.id === item.id && (
         <footer className="PlaySongs__item--footer">
@@ -120,9 +153,7 @@ const Songs = ({ item, chooseSong, setChooseSong }) => {
             ref={volumnRef}
             onClick={handleProgressVolumn}
           >
-            <div
-              style={{ inlineSize: `${volumnProgress}%` }}
-            ></div>
+            <div style={{ inlineSize: `${volumnProgress}%` }}></div>
           </div>
         </footer>
       )}
