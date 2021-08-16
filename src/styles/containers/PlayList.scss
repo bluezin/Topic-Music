@@ -25,7 +25,7 @@
 
       .img-playList {
         border-radius: 10px;
-        box-shadow: 0 10px 15px rgb(190, 182, 182);
+        box-shadow: 0 10px 15px #beb6b6;
       }
       .button-playList {
         display: flex;
@@ -45,7 +45,7 @@
       figcaption {
         position: absolute;
         bottom: 5px;
-        background-color: rgb(0, 0, 0, 0.5);
+        background-color: #00000080;
         padding: 10px;
         font-weight: bold;
         color: white;
