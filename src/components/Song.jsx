@@ -1,10 +1,12 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useRef, useState } from "react";
 
 const Songs = ({ item, chooseSong, setChooseSong, favorite, setFavorite }) => {
+  const audioRef = useRef(null);
+  const [loading, setLoading] = useState(false);
   const [isPlay, setIsPlay] = useState(false);
   const [timeProgress, setTimeProgress] = useState("");
-  const [volumnProgress, setVolumnProgress] = useState(0);
-  const audioRef = useRef(null);
+  const [volumnProgress, setVolumnProgress] = useState(90);
   const timeRef = useRef(null);
   const timeSecondRef = useRef(null);
   const duration = Math.floor(audioRef?.current?.duration);
@@ -16,6 +18,10 @@ const Songs = ({ item, chooseSong, setChooseSong, favorite, setFavorite }) => {
     } else {
       setChooseSong({ song: "", play: false });
     }
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 5000);
   };
 
   const changeCurrentProgress = (newProgress) => {
@@ -30,7 +36,9 @@ const Songs = ({ item, chooseSong, setChooseSong, favorite, setFavorite }) => {
 
     const newCurrentSliderProgress = (newProgress * 100) / duration;
     timeSecondRef.current.style.inlineSize = `${newCurrentSliderProgress}%`;
-    changeCurrentProgress(newProgress);
+    if (audioRef?.current?.currentTime !== 0) {
+      changeCurrentProgress(newProgress);
+    }
   };
 
   const handleProgressVolumn = (event) => {
@@ -39,38 +47,34 @@ const Songs = ({ item, chooseSong, setChooseSong, favorite, setFavorite }) => {
     const porcentageClickSlider = Math.floor(
       (currentVolumn * 100) / currentWidth
     );
-    audioRef.current.volume = porcentageClickSlider / 100;
-    setVolumnProgress(String(currentVolumn));
+    if (event && audioRef.current.volume) {
+      audioRef.current.volume = porcentageClickSlider / 100;
+      setVolumnProgress(String(currentVolumn));
+    }
   };
 
-  const handleSongFavorite = (name) => {
-    // return favorite?.map((data) => {
-    //   return data === name.name ? console.log("si") : console.log("nooo");
-    // });
-    // favorite.map((data) => {
-    //   return !data || data !== name
-    //     ? setFavorite([...favorite, name.name])
-    //     : null;
-    // });
-    // console.log(favorite);
-  };
+  const handleSongFavorite = (name) => {};
 
   useEffect(() => {
-    // if (chooseSong?.play === true && chooseSong?.song?.id === item.id) {
-    //   audioRef?.current?.play();
-    //   setIsPlay(true);
-    // } else if (chooseSong?.song?.id !== item.id || chooseSong?.play === false) {
-    //   audioRef?.current?.pause();
-    //   setIsPlay(false);
-    // }
-  }, [chooseSong]);
+    if (chooseSong?.play === true && chooseSong?.song?.id === item.id) {
+      audioRef?.current?.play();
+      setIsPlay(true);
+    } else if (chooseSong?.song?.id !== item.id || chooseSong?.play === false) {
+      audioRef?.current?.pause();
+      setIsPlay(false);
+    }
+
+    if (timeProgress === "100") {
+      setIsPlay(false);
+    }
+  }, [chooseSong, timeProgress]);
 
   useEffect(() => {
-    // setInterval(() => {
-    //   const mutable = audioRef?.current?.currentTime;
-    //   const progress = (mutable * 100) / audioRef?.current?.duration;
-    //   setTimeProgress(progress);
-    // }, 1000);
+    setInterval(() => {
+      const mutable = audioRef?.current?.currentTime;
+      const progress = (mutable * 100) / audioRef?.current?.duration;
+      setTimeProgress(progress);
+    }, 1000);
   }, []);
 
   return (
@@ -122,7 +126,6 @@ const Songs = ({ item, chooseSong, setChooseSong, favorite, setFavorite }) => {
               <p>{chooseSong?.song?.artistName}</p>
             </div>
           </div>
-
           <div className="PlaySongs__item--footer--play">
             <button
               className="btn-general"
@@ -133,8 +136,8 @@ const Songs = ({ item, chooseSong, setChooseSong, favorite, setFavorite }) => {
                   alt="play"
                   src={
                     isPlay
-                      ? "https://icongr.am/feather/pause-circle.svg?size=128&color=currentColor"
-                      : "https://icongr.am/octicons/play.svg?size=28&color=currentColor"
+                      ? "https://icongr.am/feather/pause-circle.svg?size=128&color=fbf9f9"
+                      : "https://icongr.am/octicons/play.svg?size=28&color=fbf9f9"
                   }
                 />
               </figure>
@@ -150,18 +153,20 @@ const Songs = ({ item, chooseSong, setChooseSong, favorite, setFavorite }) => {
               ></div>
             </div>
           </div>
-          <div
-            className="PlaySongs__item--footer--volumn"
-            ref={volumnRef}
-            onClick={handleProgressVolumn}
-          >
+          <div className="PlaySongs__item--footer--volumn">
             <figure>
               <img
                 alt="volumn"
-                src="https://icongr.am/fontawesome/volume-up.svg?size=20&color=currentColor"
+                src="https://icongr.am/fontawesome/volume-up.svg?size=20`&color=fbf9f9"
               />
             </figure>
-            <div style={{ inlineSize: `${volumnProgress}%` }}></div>
+            <div
+              className="PlaySongs__item--footer--volumn-div"
+              ref={volumnRef}
+              onClick={handleProgressVolumn}
+            >
+              <div style={{ inlineSize: `${volumnProgress}%` }}></div>
+            </div>
           </div>
         </footer>
       )}

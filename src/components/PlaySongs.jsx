@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Helmet } from "react-helmet";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 import { useParams } from "react-router";
 import { getListSongs } from "../api";
 import Loading from "../containers/loadPage";
@@ -19,14 +19,14 @@ const PlaySongs = () => {
     }
   }, [params?.id]);
 
-  // http://direct.rhapsody.com/imageserver/v2/albums/{{albumId}}/images/300x300.jpg)"
-
   return (
     <>
-      <Helmet>
-        <title>List of Musics</title>
-        <meta name="description" content="List of musics" />
-      </Helmet>
+      <HelmetProvider>
+        <Helmet>
+          <title>List of Musics</title>
+          <meta name="description" content="List of musics" />
+        </Helmet>
+      </HelmetProvider>
       {!listSongs?.tracks && <Loading />}
       <div className="PlaySongs">
         {listSongs?.tracks?.map((item) => (

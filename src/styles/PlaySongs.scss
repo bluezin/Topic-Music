@@ -1,20 +1,20 @@
 .PlaySongs {
-  width: 60%;
+  width: 100%;
   margin: 30px auto;
   position: relative;
-  padding: 20px;
 }
 
 .PlaySongs__item {
+  margin: auto;
+  width: 90%;
+
   &--sub {
     box-shadow: 0 0 5px rgb(241, 238, 238);
     cursor: pointer;
     display: grid;
     align-items: center;
-    grid-template-columns: repeat(2, auto);
+    grid-template-columns: repeat(1, auto);
     margin: 20px auto;
-    // width: 80%;
-    width: 800px;
     justify-content: space-between;
     padding-right: 20px;
     transition: background-color 2s;
@@ -49,9 +49,9 @@
   left: 0;
   right: 0;
   gap: 30px;
-  background-color: white;
-  color: black;
-  border: 2px solid red;
+  background-color: black;
+  color: white;
+  padding: 10px;
 
   .img-album {
     width: 100px;
@@ -61,9 +61,12 @@
     display: flex;
     align-items: flex-start;
     gap: 10px;
+    width: 20%;
   }
 
   &--play {
+    text-align: center;
+
     figure {
       img {
         width: 40px;
@@ -72,12 +75,11 @@
   }
 
   &--controlls {
-    color: black;
-    width: 400px;
+    width: 410px;
     text-align: center;
-    background-color: rgb(230, 223, 223);
-    display: block;
+    background-color: rgb(141, 137, 137);
     border-radius: 20px;
+    cursor: pointer;
 
     & button {
       text-align: center;
@@ -87,6 +89,7 @@
       background-color: white;
       padding: 3px;
       inline-size: 0%;
+      border-radius: 20px;
     }
   }
 
@@ -98,16 +101,59 @@
     width: 20%;
 
     & div {
-      padding: 3px;
-      inline-size: 0;
-      background-color: white;
-      border: 2px solid blue;
-
       figure {
         img {
           width: 50px;
         }
       }
+    }
+    &-div {
+      background-color: rgb(141, 137, 137);
+      width: 100px;
+      border-radius: 10px;
+      cursor: pointer;
+
+      div {
+        inline-size: 0;
+        background-color: white;
+        border-radius: 20px;
+        padding: 7px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .PlaySongs {
+    width: 60%;
+  }
+
+  .PlaySongs__item {
+    max-width: 850px;
+    margin: auto;
+  }
+}
+
+@media screen and (min-width: 470px) {
+  .PlaySongs__item--sub {
+    grid-template-columns: repeat(2, auto);
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .PlaySongs__item--footer {
+    display: inherit;
+    &--info {
+      width: 100%;
+    }
+
+    &--controlls {
+      margin: auto;
+      width: 80%;
+    }
+
+    &--volumn {
+      margin-left: -30px;
     }
   }
 }

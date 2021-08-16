@@ -1,7 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import PlayList from "./containers/PlayList";
 import { getPlayList } from "./api/index";
-import { Helmet } from "react-helmet";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 import "./styles/App.scss";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
@@ -23,10 +24,12 @@ function App() {
 
   return (
     <>
-      <Helmet>
-        <title>Topic Music</title>
-        <meta name="description" content="Topic music"></meta>
-      </Helmet>
+      <HelmetProvider>
+        <Helmet>
+          <title>Topic Music</title>
+          <meta name="description" content="Topic music"></meta>
+        </Helmet>
+      </HelmetProvider>
       <div className="App">
         <section className="App__sub">
           <PlayList playList={playList} />
