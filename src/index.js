@@ -4,49 +4,15 @@ import App from "./App";
 import "./styles/index.scss";
 import reportWebVitals from "./reportWebVitals";
 import AppRouter from "./routes/Router";
-import { createStore } from "redux";
 import { Provider } from "react-redux";
-import Cookies from "universal-cookie";
-
-const cookie = new Cookies();
-const resultLogin = cookie.get("login") || false;
-const name = cookie.get("name") || "";
-
-const initialState = {
-  user: name,
-  login: resultLogin,
-};
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "LOGIN": {
-      return {
-        ...state,
-        user: action.payload.user,
-        login: action.payload.login,
-      };
-    }
-    default:
-      return state;
-  }
-};
-
-const store = createStore(
-  reducer,
-  initialState,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
-
-export { store };
+import { store } from "./store";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <AppRouter>
-        <App />
-      </AppRouter>
-    </Provider>
-  </React.StrictMode>,
+  <Provider store={store}>
+    <AppRouter>
+      <App />
+    </AppRouter>
+  </Provider>,
   document.getElementById("root")
 );
 

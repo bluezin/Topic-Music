@@ -1,9 +1,24 @@
-import { create } from 'react-test-renderer';
-import App from './App';
+import { Provider } from "react-redux";
+import { act, create } from "react-test-renderer";
+import { store } from "./store";
+import { getPlayList } from "./api";
+import { MemoryRouter } from "react-router-dom";
+import App from "./App";
 
-describe('<App />', () => {
-  it('Render correct', () => {
-    const component = create(<App />);
-    expect(component).toBeDefined();
-  })
+test("Render App component", async () => {
+  await act(async () =>
+    create(
+      <Provider store={store}>
+        <MemoryRouter>
+          <App />
+        </MemoryRouter>
+      </Provider>
+    )
+  );
+
+  await act(() => {
+    return getPlayList().then((data) =>
+      expect(typeof data.playlists).toBe("object")
+    );
+  });
 });

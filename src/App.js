@@ -14,9 +14,7 @@ function App() {
 
   useEffect(() => {
     getPlayList().then((data) => setPlayList(data));
-  }, []);
 
-  useEffect(() => {
     if (!state?.login) {
       return history.push("/login");
     }
